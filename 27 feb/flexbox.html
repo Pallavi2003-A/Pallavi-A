@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+td {
+  border: 5px solid black;
+  border-collapse: separate;
+  border-spacing: 15px 50px;
+ }
+.flex-container {
+  display: flex;margin-top: 2px;
+  border: 5px solid black;
+  padding: 8px;
+  width:600px;row-gap: 5px;
+  flex-direction: column;
+  background-color: rgb(254, 254, 255);
+}
+
+.flex-container > div {
+  background-color: #fffafa;
+  border: 5px solid black;
+  width: 570px;
+  margin: 8px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 30px;
+}
+
+.fflex-container > div {
+  background-color: #faf7f7;
+  border: 5px solid black;
+  text-align: center;
+  font-size: 30px;
+}
+</style>
+<style>
+    .grid-container {
+      display: grid;
+     
+      grid-template-areas:
+        'header header header header header header'
+        'menu main main main main right'
+        'menu footer footer footer footer footer';
+        padding: 8px;
+        width:10px;
+      gap: 10px;
+      background-color: rgb(250, 253, 255);
+     
+    }
+    
+    .grid-container > div {
+      background-color: #f1f1f1;
+      border: 5px solid black;
+      color:#000;
+      font-size: 30px;
+      text-align: center;
+    }
+    
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+</style>
+    
+</head>
+<body>
+
+<div class="flex-container">
+  <div>1</div>
+ 
+  <table>
+    <td>
+
+
+        <div class="grid-container">
+            <div class="item1">Header</div>
+            <div class="item2">Menu</div>
+            <div class="item3">Main</div>  
+            <div class="item4">Right</div>
+            <div class="item5">Footer</div>
+          </div>
+          
+
+</td>
+<td>
+<div class="fflex-container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>  
+  </div>
+  
+</div>
+
+</td>
+</table>
+</body>
+</html>
