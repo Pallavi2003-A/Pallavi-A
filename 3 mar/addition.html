@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS</title>
+</head>
+<body>
+<h1 style="color:blue">Addition</h1>
+
+<div>
+    <label>first number</label>
+    <input . type="text" . id="txt1" name="fnum" value="" placeholder="enter your first number">
+</div>
+<div>
+<label>second number</label>
+    <input . type="text" . id="txt2" name="snum" value=""placeholder="enter your second number">
+</div>
+<div>
+<button onclick="getFullNum()">submit </button></div>
+<h1 style="color:rgb(80, 80, 100)" id="fsnum"></h1>
+
+<script>
+    function getFullNum(){
+    
+        var fnum = parseInt(document.getElementById('txt1').value);
+        var snum = parseInt(document.getElementById('txt2').value);
+        var fullnum = fnum*snum;
+       document.getElementById('fsnum').innerHTML="Result:"+fullnum;
+    }
+</script>
+</body>
+</html>
