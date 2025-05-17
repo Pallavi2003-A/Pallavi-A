@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Details Form</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .contact-form-container {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 24px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .otp-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+
+        .otp-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .otp-section {
+            display: none;
+            margin-top: 20px;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .contact-form-container {
+                padding: 20px;
+                margin: 20px auto;
+            }
+
+            .form-title {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contact-form-container">
+        <h2 class="form-title">Contact Details</h2>
+        <form class="contact-form" id="contactForm">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+            </div>
+
+            <button type="button" class="otp-btn" id="generateOtpBtn">Generate OTP</button>
+
+            <div class="otp-section" id="otpSection">
+                <div class="form-group">
+                    <label for="otp">Enter OTP</label>
+                    <input type="text" id="otp" name="otp" placeholder="Enter the OTP sent to your phone" required>
+                </div>
+                <button type="submit" class="otp-btn">Verify OTP</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('generateOtpBtn').addEventListener('click', function () {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!name || !phone) {
+                alert('Please enter both name and phone number');
+                return;
+            }
+
+            // Generate a random 6-digit OTP
+            const otp = Math.floor(100000 + Math.random() * 900000);
+
+            // In a real application, you would send this OTP to the user's phone
+            // For demonstration, we'll show it in an alert
+
+
+            // Store the OTP for verification (in a real app, this would be server-side)
+            sessionStorage.setItem('otp', otp);
+
+            // Show the OTP verification section
+            document.getElementById('otpSection').style.display = 'block';
+        });
+
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const enteredOtp = document.getElementById('otp').value;
+            const storedOtp = sessionStorage.getItem('otp');
+
+            if (enteredOtp === storedOtp) {
+                alert('OTP verified successfully!');
+                // In a real app, you would proceed with form submission here
+                this.reset();
+                document.getElementById('otpSection').style.display = 'none';
+                sessionStorage.removeItem('otp');
+            } else {
+                alert('Invalid OTP. Please try again.');
+            }
+        });
+    </script>
+</body>
+
+</html>

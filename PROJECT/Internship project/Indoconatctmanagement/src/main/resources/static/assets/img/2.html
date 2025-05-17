@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Machinery | Industrial Contact Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Previous styles remain the same */
+
+        /* Add Industry Button Styles */
+        .add-industry-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .add-industry-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-industry-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        /* Add Industry Form Styles */
+        .add-industry-form {
+            display: none;
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-industry-form.active {
+            display: block;
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .submit-btn {
+            padding: 12px 30px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: #3498db;
+        }
+
+        /* Rest of your existing styles remain the same */
+    </style>
+</head>
+
+<body>
+    <!-- UPDATED Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-industry"></i>
+                <span>Industrial Contact Management</span>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="HOME.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Buyers</a></li>
+                <li><a href="#"><i class="fas fa-building"></i> Suppliers</a></li>
+                <li><a href="#"><i class="fas fa-cogs"></i> Services</a></li>
+                <li><a href="#"><i class="fas fa-question-circle"></i> Help</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Add Industry Button -->
+    <div class="container add-industry-container">
+        <button class="add-industry-btn" id="addIndustryBtn">
+            <i class="fas fa-plus-circle"></i> Add New Industry
+        </button>
+    </div>
+
+    <!-- Add Industry Form -->
+    <div class="container">
+        <form class="add-industry-form" id="addIndustryForm">
+            <h2 class="form-title">Add New Industry</h2>
+
+            <div class="form-group">
+                <label for="industryName">Industry Name</label>
+                <input type="text" id="industryName" name="industryName" placeholder="Enter industry name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryType">Type of Industry</label>
+                <select id="industryType" name="industryType" required>
+                    <option value="">Select industry type</option>
+                    <option value="textile">Textile Materials</option>
+                    <option value="machinery">Industry Machinery</option>
+                    <option value="steel">Steel & Power Industries</option>
+                    <option value="construction">Construction Equipment</option>
+                    <option value="electrical">Electrical & Electronics</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="industryAddress">Address</label>
+                <textarea id="industryAddress" name="industryAddress" placeholder="Enter full address"
+                    required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="industryCity">City</label>
+                <input type="text" id="industryCity" name="industryCity" placeholder="Enter city" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryState">State</label>
+                <input type="text" id="industryState" name="industryState" placeholder="Enter state" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryCountry">Country</label>
+                <input type="text" id="industryCountry" name="industryCountry" placeholder="Enter country" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryPhone">Phone Number</label>
+                <input type="tel" id="industryPhone" name="industryPhone" placeholder="Enter phone number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryImage">Industry Image</label>
+                <input type="file" id="industryImage" name="industryImage" accept="image/*" required>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Rest of your existing content (header dropdown, slider, items, footer) -->
+
+    <script>
+        // Add Industry Form Toggle
+        const addIndustryBtn = document.getElementById('addIndustryBtn');
+        const addIndustryForm = document.getElementById('addIndustryForm');
+
+        addIndustryBtn.addEventListener('click', () => {
+            addIndustryForm.classList.toggle('active');
+        });
+
+        // Form submission
+        addIndustryForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Get form values
+            const industryName = document.getElementById('industryName').value;
+            const industryType = document.getElementById('industryType').value;
+            const industryAddress = document.getElementById('industryAddress').value;
+            const industryCity = document.getElementById('industryCity').value;
+            const industryState = document.getElementById('industryState').value;
+            const industryCountry = document.getElementById('industryCountry').value;
+            const industryPhone = document.getElementById('industryPhone').value;
+            const industryImage = document.getElementById('industryImage').files[0];
+
+            // Here you would typically send this data to a server
+            // For this example, we'll just log it and show an alert
+            console.log({
+                name: industryName,
+                type: industryType,
+                address: industryAddress,
+                city: industryCity,
+                state: industryState,
+                country: industryCountry,
+                phone: industryPhone,
+                image: industryImage ? industryImage.name : 'No image selected'
+            });
+
+            alert('Industry added successfully! (This is a demo - data not actually saved)');
+
+            // Reset form and hide it
+            addIndustryForm.reset();
+            addIndustryForm.classList.remove('active');
+        });
+
+        // Your existing filterCategories and mobile menu toggle functions
+        function filterCategories() {
+            const input = document.getElementById("categorySearch");
+            const filter = input.value.toUpperCase();
+            const links = document.querySelectorAll(".dropdown-content a");
+
+            links.forEach(link => {
+                const text = link.textContent || link.innerText;
+                link.style.display = text.toUpperCase().includes(filter) ? "" : "none";
+            });
+        }
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>

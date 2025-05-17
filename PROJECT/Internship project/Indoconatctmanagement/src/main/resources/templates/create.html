@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Registration</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
+    <div class="w-50">
+        <h1 class="mt-5 text-center">Industry Registration Form</h1>
+        <form th:action="@{/human/save}" th:object="${addIndustry}" method="post" enctype="multipart/form-data">
+            
+            <div class="form-group">
+                <label for="industryName">Industry Name</label>
+                <input type="text" class="form-control" id="industryName" th:field="*{industryName}" placeholder="Enter Industry Name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryType">Industry Type</label>
+                <select class="form-control" id="industryType" th:field="*{industryType}" required>
+                    <option value="">Select industry type</option>
+                    <option value="textile">Textile Materials</option>
+                    <option value="machinery">Industry Machinery</option>
+                    <option value="steel">Steel & Power Industries</option>
+                    <option value="construction">Construction Equipment</option>
+                    <option value="electrical">Electrical & Electronics</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="industryAddress">Address</label>
+                <input type="text" class="form-control" id="industryAddress" th:field="*{industryAddress}" placeholder="Enter Address" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryCity">City</label>
+                <input type="text" class="form-control" id="industryCity" th:field="*{industryCity}" placeholder="Enter City" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryState">State</label>
+                <input type="text" class="form-control" id="industryState" th:field="*{industryState}" placeholder="Enter State" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryCountry">Country</label>
+                <input type="text" class="form-control" id="industryCountry" th:field="*{industryCountry}" placeholder="Enter Country" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryPhone">Phone Number</label>
+                <input type="tel" class="form-control" id="industryPhone" th:field="*{industryPhone}" placeholder="Enter Phone Number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="industryImage">Industry Image</label>
+                <input type="file" class="form-control" id="industryImage" name="industryImage" accept="image/*" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block"><a th:href="@{/dashboard}">Register Industry</a></button>
+        </form>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

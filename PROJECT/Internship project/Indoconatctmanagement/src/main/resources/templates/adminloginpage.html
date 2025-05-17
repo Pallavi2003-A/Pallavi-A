@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | Industrial Contact</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: url('https://source.unsplash.com/random/1920x1080/?office,admin') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(8px) brightness(0.7);
+            z-index: -1;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+            color: #3498db;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 25px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        .nav-links a i {
+            margin-right: 5px;
+        }
+
+
+        /* Login Container */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding-top: 70px;
+        }
+
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            backdrop-filter: blur(2px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .login-header p {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ecf0f1;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-group input:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-button:hover {
+            background-color: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .forgot-password {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .forgot-password a {
+            color: #95a5a6;
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .forgot-password a:hover {
+            color: #3498db;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            color: #95a5a6;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-industry"></i>
+                <span>Industrial Contact</span>
+            </div>
+            <ul class="nav-links">
+                <li><a th:href="@{/Home}">Home</a></li>
+                <li><a th:href="@{/buyers}">Buyers</a></li>
+                <li><a th:href="@{/supplier_login}">Suppliers</a></li>
+                <li><a th:href="@{/services}">Services</a></li>
+                <li><a th:href="@{/dashboard}">Dashboard</a></li>
+           </ul>
+        </div>
+    </header>
+
+    <!-- Login Form -->
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="login-header">
+                <h1>Admin Login</h1>
+                <p>Secure access to administration panel</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+                    <div class="error-message" id="username-error"></div>
+                </div>
+
+                <div class="form-group password-container">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password" required>
+                    <span class="toggle-password" onclick="togglePassword('password')">👁</span>
+                    <div class="error-message" id="password-error"></div>
+                </div>
+
+                <button type="submit" class="login-button"><a th:href="@{/dashboard}">Login</a></button>
+            </form>
+
+            <div class="forgot-password">
+                <a href="#" onclick="alert('Please contact system administrator for password reset')">Forgot password?</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Predefined credentials
+        const ADMIN_USERNAME = "bhoomika";
+        const ADMIN_PASSWORD = "bhoomika@123";
+        
+        // Toggle password visibility
+        function togglePassword(id) {
+            const input = document.getElementById(id);
+            input.type = input.type === 'password' ? 'text' : 'password';
+        }
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Clear previous errors
+            document.getElementById('username-error').style.display = 'none';
+            document.getElementById('password-error').style.display = 'none';
+
+            // Get input values
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Validation
+            let isValid = true;
+
+            if (!username) {
+                document.getElementById('username-error').textContent = 'Username is required';
+                document.getElementById('username-error').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!password) {
+                document.getElementById('password-error').textContent = 'Password is required';
+                document.getElementById('password-error').style.display = 'block';
+                isValid = false;
+            }
+
+            if (!isValid) return;
+
+            // Check credentials
+            if (username !== ADMIN_USERNAME || password !== ADMIN_PASSWORD) {
+                document.getElementById('username-error').textContent = 'Invalid username or password';
+                document.getElementById('username-error').style.display = 'block';
+                document.getElementById('password-error').textContent = 'Invalid username or password';
+                document.getElementById('password-error').style.display = 'block';
+                return;
+            }
+
+            // Successful login - redirect to dashboard
+            alert('Login successful! Redirecting to admin dashboard...');
+            window.location.href = "dashboard.html";
+        });
+    </script>
+</body>
+
+</html>

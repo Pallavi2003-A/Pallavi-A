@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #0a4b78;
+            --secondary-color: #f7931d;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --border-color: #e1e1e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-orange {
+            background-color: var(--secondary-color);
+            color: white;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .btn-orange:hover {
+            background-color: #ffa726;
+            color: white;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-links a {
+            color: white;
+            margin-left: 15px;
+        }
+
+        .top-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 14px;
+            color: var(--secondary-color);
+            display: block;
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a i {
+            margin-left: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .services-hero {
+            background: linear-gradient(rgba(10, 75, 120, 0.8), rgba(10, 75, 120, 0.8)), 
+                        url('/assets/img/service-bg.jpg') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .services-hero h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .services-hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: 60px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 15px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 25px;
+        }
+
+        .service-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        .service-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .service-features {
+            margin-bottom: 20px;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .service-features li i {
+            color: var(--secondary-color);
+            margin-right: 10px;
+        }
+
+        /* Why Choose Us */
+        .why-choose-us {
+            background-color: var(--light-color);
+            padding: 60px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-box {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: rgba(10, 75, 120, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: var(--primary-color);
+            font-size: 30px;
+        }
+
+        .feature-box h3 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+
+        /* CTA Section */
+        .service-cta {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .service-cta h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+
+        .service-cta p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-color);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #3498db;
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-hero {
+                padding: 80px 0;
+            }
+            
+            .services-hero h1 {
+                font-size: 36px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .services-hero {
+                padding: 60px 0;
+            }
+            
+            .services-hero h1 {
+                font-size: 30px;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="welcome-text">
+                Welcome to Industrial Services
+            </div>
+            <div class="top-links">
+                <a href="#"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="#"><i class="fas fa-headset"></i> Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="/assets/img/indo.png" alt="Industrial Services">
+                <div class="logo-text">
+                    <h1>Industrial Services</h1>
+                    <span>Professional Solutions for Your Business</span>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a th:href="@{/Home}">Home</a></li>
+                    <li><a th:href="@{/buyers}">Buyers</a></li>
+                    <li><a th:href="@{/supplier_login}">Suppliers</a></li>
+                    <li><a th:href="@{/Services}">Services</a></li>
+                    <li><a th:href="@{/dashboard}">Dashboard</a></li>
+               </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <h1>Comprehensive Industrial Services</h1>
+            <p>We provide specialized solutions to streamline your industrial operations, enhance productivity, and connect you with the right partners in the industry.</p>
+            <a href="#our-services" class="btn btn-orange">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section" id="our-services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Professional Services</h2>
+                <p>We offer a wide range of services designed to meet the unique needs of industrial businesses</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/assets/img/e.jpg" alt="Supply Chain Management">
+                    </div>
+                    <div class="service-content">
+                        <h3>Supply Chain Management</h3>
+                        <p>Optimize your supply chain with our comprehensive management solutions that connect you with reliable suppliers and logistics partners.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Supplier vetting and qualification</li>
+                            <li><i class="fas fa-check"></i> Inventory optimization</li>
+                            <li><i class="fas fa-check"></i> Logistics coordination</li>
+                            <li><i class="fas fa-check"></i> Risk management</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/assets/img/e2.jpg"  alt="Industrial Consulting">
+                    </div>
+                    <div class="service-content">
+                        <h3>Industrial Consulting</h3>
+                        <p>Our expert consultants provide tailored solutions to improve your operational efficiency and business performance.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Process optimization</li>
+                            <li><i class="fas fa-check"></i> Cost reduction strategies</li>
+                            <li><i class="fas fa-check"></i> Quality management</li>
+                            <li><i class="fas fa-check"></i> Technology implementation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/assets/img/e3.jpg" alt="Equipment Maintenance">
+                    </div>
+                    <div class="service-content">
+                        <h3>Equipment Maintenance</h3>
+                        <p>Keep your machinery running at peak performance with our professional maintenance and repair services.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Preventive maintenance</li>
+                            <li><i class="fas fa-check"></i> Emergency repairs</li>
+                            <li><i class="fas fa-check"></i> Equipment calibration</li>
+                            <li><i class="fas fa-check"></i> Spare parts sourcing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/assets/img/e4.png" alt="Workforce Training">
+                    </div>
+                    <div class="service-content">
+                        <h3>Workforce Training</h3>
+                        <p>Enhance your team's skills with our specialized industrial training programs tailored to your specific needs.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Safety training</li>
+                            <li><i class="fas fa-check"></i> Equipment operation</li>
+                            <li><i class="fas fa-check"></i> Quality control</li>
+                            <li><i class="fas fa-check"></i> Leadership development</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/assets/img/e5.jpg" alt="Quality Assurance">
+                    </div>
+                    <div class="service-content">
+                        <h3>Quality Assurance</h3>
+                        <p>Implement robust quality control systems to ensure your products meet industry standards and customer expectations.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Quality audits</li>
+                            <li><i class="fas fa-check"></i> Process improvement</li>
+                            <li><i class="fas fa-check"></i> Certification assistance</li>
+                            <li><i class="fas fa-check"></i> Continuous monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="/assets/img/e6.jpg" alt="Energy Solutions">
+                    </div>
+                    <div class="service-content">
+                        <h3>Energy Solutions</h3>
+                        <p>Reduce your operational costs and environmental impact with our energy efficiency solutions.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Energy audits</li>
+                            <li><i class="fas fa-check"></i> Renewable energy options</li>
+                            <li><i class="fas fa-check"></i> Equipment upgrades</li>
+                            <li><i class="fas fa-check"></i> Sustainability consulting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose-us">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Our Services</h2>
+                <p>We are committed to delivering exceptional value to our industrial clients</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <h3>Industry Expertise</h3>
+                    <p>Our team has decades of combined experience across multiple industrial sectors.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Client Focused</h3>
+                    <p>We tailor our services to meet your specific business needs and challenges.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovative Solutions</h3>
+                    <p>We leverage the latest technologies and methodologies to deliver results.</p>
+                </div>
+                
+                <div class="feature-box">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Trusted Network</h3>
+                    <p>Access our extensive network of qualified suppliers and service providers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="service-cta">
+        <div class="container">
+            <h2>Ready to Enhance Your Industrial Operations?</h2>
+            <p>Contact us today to discuss how our services can benefit your business and help you achieve your goals.</p>
+           
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Industrial Services provides professional solutions to help industrial businesses optimize their operations and connect with quality partners.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Suppliers</a></li>
+                        <li><a href="#">Buyers</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Supply Chain</a></li>
+                        <li><a href="#">Consulting</a></li>
+                        <li><a href="#">Maintenance</a></li>
+                        <li><a href="#">Training</a></li>
+                        <li><a href="#">Quality Assurance</a></li>
+                        <li><a href="#">Energy Solutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Industrial Park, Sector 45, Mumbai, Maharashtra 400001</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 1234567890</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>services@industrialcontact.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Industrial Services. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

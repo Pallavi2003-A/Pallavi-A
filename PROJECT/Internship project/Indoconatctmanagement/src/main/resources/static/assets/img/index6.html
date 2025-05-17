@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Machinery | Industrial Contact Management</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reuse your existing CSS styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles (same as main page) */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        /* NEW: Slideshow Styles */
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            padding: 100px 0 40px;
+            text-align: center;
+        }
+
+        .slide-content h1 {
+            font-size: 42px;
+            margin-bottom: 20px;
+        }
+
+        .slide-content p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Your existing styles below remain exactly the same */
+        .subcategories {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title h2 {
+            font-size: 32px;
+            color: #2c3e50;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(45deg, #3498db, #2c3e50);
+        }
+
+        .subcategories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .subcategory-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .subcategory-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .subcategory-image {
+            height: 180px;
+            background-size: cover;
+            background-position: left;
+            /* Changed to left-align images */
+        }
+
+        .subcategory-content {
+            padding: 20px;
+        }
+
+        .subcategory-content h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .subcategory-content p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .view-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 40px 0;
+            background-color: #f9f9f9;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-image {
+            height: 200px;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .product-details {
+            padding: 20px;
+        }
+
+        .product-details h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .product-price {
+            font-weight: bold;
+            color: #e74c3c;
+            font-size: 18px;
+        }
+
+        .product-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .product-btn:hover {
+            background-color: #3498db;
+        }
+
+        /* Footer (same as main page) */
+        footer {
+            background-color: rgb(44, 62, 82);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .banner-container {
+                flex-direction: column;
+            }
+
+            .categories-sidebar {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                font-size: 12px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-category {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header (same as main page) -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-industry"></i>
+                <span>indo Contact Management</span>
+            </div>
+            <nav>
+                <a href="HOME.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- NEW: Slideshow Hero Section (replaces category-header) -->
+    <div class="slideshow-container">
+        <!-- Slide 1 -->
+        <div class="slide active" style="background-image: url('prjct1.jpg')">
+            <div class="slide-content">
+                <h1>Industrial Machinery</h1>
+                <p>Find high-quality industrial machinery from trusted suppliers worldwide</p>
+            </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide" style="background-image: url('vardhman.jpg')">
+            <div class="slide-content">
+                <h1>Premium Equipment</h1>
+                <p>Browse our extensive catalog of manufacturing tools and more</p>
+            </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide" style="background-image: url('prjct1.jpg')">
+            <div class="slide-content">
+                <h1>Advanced Solutions</h1>
+                <p>Innovative technology for modern industrial needs</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Subcategories Section (rest of your existing content) -->
+    <section class="subcategories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Machinery Categories</h2>
+            </div>
+            <div class="subcategories-grid">
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry001.jpeg')"></div>
+                    <div class="subcategory-content">
+                        <h3>ZEBRA MACHINERY</h3>
+                        <p>Zebra helps manufacturers drive productivity and maintain high-quality standards.</p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry2.jpg')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>EPIC MACHINERY</h3>
+                        <p> Epic have streamlined our Epic and Reinco brand product offerings so you can still find
+                            great, high-quality equipment through our Easy
+                            Lawn and Apex Seeder brands. </p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry3.jpeg')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>HARD MACHINERY</h3>
+                        <p>Hard Manufacturing Co., Inc. is a Retail, Hospitals and Health Care, and Hospital Beds
+                            company located in Buffalo, New York with $8.1 million in revenue and 19 employees.</p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry4.jpeg')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>INTEL Machinery</h3>
+                        <p>Processors are manufactured in semiconductor fabrication plants called "fabs" which are then
+                            sent to assembly and testing sites before delivery to customers. </p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry5.jpeg')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>EPIQ Machinery</h3>
+                        <p>EPIQ Machinery offers global solutions of innovative equipment to improve the handling and
+                            process flow of an aluminum smelter, pulp and paper mill and hydrometallurgy.</p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry6.png')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>LUSHA MACHINERY</h3>
+                        <p>Get access to Lusha's database of business leads from manufacturing companies in India.
+                            1553 companies are listed in our database (showing 1 - 99) </p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry7.jpeg')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>AMBITIONBOX Machinery</h3>
+                        <p>Get insights into Manufacturing Industry MNC culture, salaries, career opportunities,
+                            interview questions, employee reviews & benefits, job openings and much more on AmbitionBox.
+                        </p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+
+                <div class="subcategory-card">
+                    <div class="subcategory-image" style="background-image: url('industry9.jpeg')">
+                    </div>
+                    <div class="subcategory-content">
+                        <h3>WATERJET Machinery</h3>
+                        <p>The waterjet cutting machine market is poised for significant growth, driven by the
+                            increasing adoption of these machines across various industries.</p>
+                        <a href="#" class="view-btn">View Products</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (same as main page) -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Industrial Contact Management is a leading B2B marketplace connecting industrial suppliers with
+                        buyers worldwide.</p>
+
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Suppliers</a></li>
+                        <li><a href="#">Buyers</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>123 Industrial Park, Sector 45, Mumbai, Maharashtra 400001</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>+91 1234567890</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@industrialcontact.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Industrial Contact Management. All Rights Reserved.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Enhanced Slideshow functionality with visibility check
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function showSlide(n) {
+            // Hide all slides
+            slides.forEach(slide => slide.classList.remove('active'));
+
+            // Calculate the new slide index
+            currentSlide = (n + totalSlides) % totalSlides;
+
+            // Show the new slide
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function startSlideshow() {
+            slideInterval = setInterval(nextSlide, 2000);
+        }
+
+        // Initialize slideshow
+        function initSlideshow() {
+            // Start the slideshow
+            startSlideshow();
+
+            // Pause slideshow on hover
+            const slideshow = document.querySelector('.slideshow-container');
+            slideshow.addEventListener('mouseenter', () => {
+                clearInterval(slideInterval);
+            });
+
+            // Resume slideshow when mouse leaves
+            slideshow.addEventListener('mouseleave', () => {
+                startSlideshow();
+            });
+
+            // Handle visibility change events
+            document.addEventListener('visibilitychange', function () {
+                if (document.hidden) {
+                    clearInterval(slideInterval);
+                } else {
+                    startSlideshow();
+                }
+            });
+        }
+
+        // Start the slideshow when the page loads
+        window.addEventListener('load', initSlideshow);
+    </script>
+</body>
+
+</html>

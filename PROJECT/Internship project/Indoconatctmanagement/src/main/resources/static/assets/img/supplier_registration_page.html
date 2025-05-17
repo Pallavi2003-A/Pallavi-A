@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .signup-container {
+            background-color: #fff;
+            padding: 40px 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .signup-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            font-size: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .signup-btn {
+            width: 100%;
+            background-color: #1DB954;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .login-link a {
+            color: blue;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="signup-container">
+        <h2 style="color: red;">Create Account</h2>
+
+        <div class="form-group">
+            <input type="text" placeholder="Username">
+        </div>
+
+        <div class="form-group">
+            <input type="email" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+            <input type="tel" placeholder="Phone Number">
+        </div>
+
+        <div class="form-group">
+            <input type="password" placeholder="Password">
+        </div>
+
+        <div class="form-group">
+            <input type="password" placeholder="Re-enter Password">
+        </div>
+
+        <button class="signup-btn"><a href="supplier_login_page.html">Sign Up</a></button>
+
+        <div class="login-link">
+            Already have an account? <a href="supplier_login_page.html">Login</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Contact Management | B2B Industrial Directory</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #0a4b78;
+            --secondary-color: #f7931d;
+            --accent-color: #e74c3c;
+            --light-color: #f8f9fa;
+            --dark-color: #343a40;
+            --text-color: #333;
+            --border-color: #e1e1e1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: all 0.3s;
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: 600;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #0c5a91;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-orange {
+            background-color: var(--secondary-color);
+            color: white;
+            border: 1px solid var(--secondary-color);
+        }
+
+        .btn-orange:hover {
+            background-color: #ffa726;
+            color: white;
+        }
+
+        /* Header Styles */
+        .top-bar {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 8px 0;
+            font-size: 14px;
+        }
+
+        .top-bar-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top-links a {
+            color: white;
+            margin-left: 15px;
+        }
+
+        .top-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo-text h1 {
+            font-size: 24px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 14px;
+            color: var(--secondary-color);
+            display: block;
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+            position: relative;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--dark-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a i {
+            margin-left: 5px;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: white;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            padding: 10px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 1001;
+        }
+
+        .nav-links li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-menu a {
+            padding: 8px 20px;
+            display: block;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .header {
+            padding: 15px 20px;
+            background-color: #0a4b78;
+            ;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-btn {
+            background-color: white;
+            color: black;
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #0a4b78;
+            ;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+
+
+        /* Hero Banner */
+        .hero-banner {
+            background-color: #e9ecef;
+            padding: 40px 0;
+        }
+
+        .banner-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .categories-sidebar {
+            width: 250px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .categories-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 15px;
+            border-radius: 4px 4px 0 0;
+            font-weight: 600;
+        }
+
+        .categories-list {
+            padding: 10px 0;
+        }
+
+        .category-item {
+            padding: 8px 15px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-item:last-child {
+            border-bottom: none;
+        }
+
+        .category-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        .banner-slider {
+            flex: 1;
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+            height: 350px;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide-content {
+            position: absolute;
+            bottom: 100px;
+            left: 50px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 5px;
+            max-width: 500px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .section-title h2 {
+            font-size: 24px;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        .section-title a {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        /* Product Cards */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 180px;
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .product-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .product-details {
+            padding: 15px;
+        }
+
+        .product-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            height: 40px;
+        }
+
+        .product-company {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .product-location {
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            align-items: center;
+        }
+
+        .product-location i {
+            margin-right: 5px;
+        }
+
+        /* Call to Action */
+        .cta-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .cta-container h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .cta-container p {
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+
+        .contact-info {
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: var(--secondary-color);
+            margin-top: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .banner-container {
+                flex-direction: column;
+            }
+
+            .categories-sidebar {
+                width: 100%;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar {
+                font-size: 12px;
+            }
+
+            .logo-text h1 {
+                font-size: 20px;
+            }
+
+            .search-container {
+                flex-direction: column;
+            }
+
+            .search-category {
+                width: 100%;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            .search-btn {
+                width: 100%;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-container">
+            <div class="welcome-text">
+                Welcome to Industrial Contact Management
+            </div>
+            <div class="top-links">
+                <a th:href="@{/login/login}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                <a href="#"><i class="fas fa-headset"></i> Help</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="indo.png" alt="Industrial Contact Management">
+                <div class="logo-text">
+                    <h1>Industrial Contact</h1>
+                </div>
+            </div>
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="HOME.html">Home</a></li>
+                    <li><a href="viewall.html">Buyers</a></li>
+                    <li><a href="supplier_login_page.html">Suppliers</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li>
+                        <a href="#">Help<i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="contact_us.html">contact us</a>
+                            <a href="#">chat with us</a>
+                        </div>
+                    </li>
+
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="header">
+        <div class="dropdown">
+            <span style="color:#e1e1e1;">Filters<i class="fas fa-chevron-down"></i></span>
+            <input style="width: 1000px; height: 40px;" class="dropdown-btn" type="text"
+                placeholder="Search categories..." id="categorySearch" onkeyup="filterCategories()">
+
+            <div class="dropdown-content">
+
+                <a href="#">All</a>
+                <a href="Textile_industry.html">textile Materials</a>
+                <a href="industry_Machinery.html">industry machinery</a>
+                <a href="steel_and_power.html">steel & power Industries</a>
+                <a href="construction_equipment.html">Construction Equipment</a>
+                <a href="">Home</a>
+            </div>
+             
+        </div>
+          
+    </div>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="container banner-container">
+            <div class="categories-sidebar">
+                <div class="categories-header">
+                    <i class="fas fa-list"></i> Product Categories
+                </div>
+                <div class="categories-list">
+                    <div class="category-item">
+                        <span>Industrial Machinery</span>
+                        <a href="industry_Machinery.html"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+
+                    <div class="category-item">
+                        <span>Textile Materials</span>
+                        <a href="Textile_industry.html"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="category-item">
+                        <span>steel & power Industries</span>
+                        <a href="steel_and_power.html"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+                    <div class="category-item">
+                        <span>Construction Equipment</span>
+                        <a href="construction_equipment.html"><i class="fas fa-chevron-right"></i></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="banner-slider">
+                <div class="slide active" style="background-image: url('prjct1.jpg');">
+                    <div class="slide-content">
+                        <h2>Industrial Connectivity Redefined</h2>
+                        <p>Streamline your industrial contacts with our comprehensive management solution.</p>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('prjct2.jpg');">
+                    <div class="slide-content">
+                        <h2>Efficient Contact Management</h2>
+                        <p>Connect with suppliers, customers, and partners seamlessly.</p>
+                    </div>
+                </div>
+                <div class="slide" style="background-image: url('prjct3.jpg');">
+                    <div class="slide-content">
+                        <h2>Smart Industrial Networking</h2>
+                        <p>Advanced tools for modern industrial relationship management.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Featured Products -->
+            <div class="section-title">
+                <h2>Featured Products</h2>
+                <a href="viewall.html">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="electrical .png" alt="Industrial Machine">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Havells India Ltd</h3>
+                        <div class="product-company">Appliances, Electrical, and Electronics Manufacturing</div>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> hospete, karnataka
+                        </div>
+                        <div> <a href="#"><i class="fab fa-whatsapp"> +91 123457890</i></a></div>
+
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="vardhman.jpg" alt="Safety Gear">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">vardhman</h3>
+                        <div class="product-company">Textile Industry</div>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Delhi, India
+                        </div>
+                        <div> <a href="#"><i class="fab fa-whatsapp"> +91 123457890</i></a></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="Kirloskar-Koppal.png" alt="Electrical Component">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Kirloskar Ferrous Industries</h3>
+                        <div class="product-company">Electro Power & steel industry</div>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> koppal, karnataka
+                        </div>
+                        <div> <a href="#"><i class="fab fa-whatsapp"> +91 123457890</i></a></div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="arvind.jpg" alt="Industrial Tool">
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Arvind</h3>
+                        <div class="product-company">Textile Industry</div>
+                        <div class="product-location">
+                            <i class="fas fa-map-marker-alt"></i> Ahmedabad, India
+                        </div>
+                        <div> <a href="#"><i class="fab fa-whatsapp"> +91 123457890</i></a></div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Popular Categories -->
+            <div class="section-title">
+                <h2>Popular Categories</h2>
+                <a href="#">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-cogs" style="font-size: 50px; color: #f5f1f1;"></i>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Industrial Machinery</h3>
+                        <div class="product-company">1,245 Products</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-bolt" style="font-size: 50px; color: #666;"></i>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Electrical Equipment</h3>
+                        <div class="product-company">876 Products</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-hard-hat" style="font-size: 50px; color: #666;"></i>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">steel & power Industries</h3>
+                        <div class="product-company">542 Products</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <i class="fas fa-box-open" style="font-size: 50px; color: #666;"></i>
+                    </div>
+                    <div class="product-details">
+                        <h3 class="product-title">Textile Materials</h3>
+                        <div class="product-company">398 Products</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container cta-container">
+            <h2>Connect with Global Industrial Suppliers & Buyers</h2>
+            <p>Join our platform to expand your business network and discover new opportunities in the industrial
+                sector.</p>
+            <div class="cta-buttons">
+                <a href="#" class="btn btn-orange">Register as Supplier</a>
+                <a href="#" class="btn btn-outline">Register as Buyer</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <p>Industrial Contact Management is a leading B2B marketplace connecting industrial suppliers with
+                        buyers worldwide.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Products</a></li>
+                        <li><a href="#">Suppliers</a></li>
+                        <li><a href="#">Buyers</a></li>
+                        <li><a href="#">Services</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Support</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <div class="contact-info">
+                        <i class="fas fa-map-marker"></i>
+                        <span>123 Industrial Park, Sector 45, Mumbai, Maharashtra 400001</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-phone"></i>
+                        <span>+91 1234567890</span>
+                    </div>
+                    <div class="contact-info">
+                        <i class="fas fa-envelope"></i>
+                        <span>info@industrialcontact.com</span>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Industrial Contact Management. All Rights Reserved.</p>
+                <div class="footer-column">
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Image Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        // Change slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Responsive adjustments
+        function handleResize() {
+            if (window.innerWidth > 992) {
+                navLinks.style.display = 'flex';
+            } else {
+                navLinks.style.display = 'none';
+            }
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        // Initialize
+        handleResize();
+        function filterCategories() {
+            const input = document.getElementById("categorySearch");
+            const filter = input.value.toUpperCase();
+            const links = document.querySelectorAll(".dropdown-content a");
+
+            links.forEach(link => {
+                const text = link.textContent || link.innerText;
+                link.style.display = text.toUpperCase().includes(filter) ? "" : "none";
+            });
+        }
+    </script>
+</body>
+
+</html>
